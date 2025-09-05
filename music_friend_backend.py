@@ -5,12 +5,20 @@ from datetime import datetime
 import uuid
 from dotenv import load_dotenv
 
-# Import your event functions
-from event_recommender import get_upcoming_events, format_events_for_llm, generate_recommendations
+print("Basic imports successful")
+
+try:
+    from event_recommender import get_upcoming_events, format_events_for_llm, generate_recommendations
+    print("Event recommender imports successful")
+except Exception as e:
+    print(f"Import error: {e}")
+    raise
 
 load_dotenv()
+print("Environment loaded")
 
 app = Flask(__name__)
+print("Flask app created")
 
 # Your existing constants
 GROQ_API_KEY = os.getenv('GROQ_API_KEY')
@@ -56,9 +64,7 @@ def extract_genres_from_message(message):
 def index():
     """Serve the chat interface"""
     # You would save the HTML as a separate file, but for demo purposes:
-    print("Current directory:", os.getcwd())
-    print("HTML file exists:", os.path.exists('music_friend_chat.html'))
-    with open('music_friend_chat.html', 'r') as f:
+    with open('simple_site.html', 'r') as f:
         return f.read()
 
 @app.route('/test')
