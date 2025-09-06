@@ -9,6 +9,7 @@ def index():
     with open('simple_site.html', 'r') as f:
         return f.read()
 
+
 @app.route('/test')
 def test():
     return "Test works!"
